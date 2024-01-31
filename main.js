@@ -1,4 +1,7 @@
 let items = ["Rock", "Paper", "Scissors"];
+let userScore = 0;
+let computerScore = 0;
+let round = 0;
 
 function getComputerChoice() {
     let i = Math.floor(Math.random() * items.length);
@@ -13,7 +16,6 @@ console.log(getComputerChoice());
 
 function playRound(playerSelection, computerSelection) {
     let playerInput = prompt("Do you choose Rock, Paper or Scissors?");
-    let roundScore;
 
     playerSelection = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase();
     computerSelection = getComputerChoice();
@@ -21,15 +23,19 @@ function playRound(playerSelection, computerSelection) {
     for (i = 0; i <= 3; i++) {
         if (playerSelection === items[i]) {
             if (playerSelection === computerSelection) {
-                roundScore = 0;
                 return "You Tied! Try another round!"
-            } else if (playerSelection == "Rock" && computerSelection == "Paper" || playerSelection == "Paper" && computerSelection == "Scissors" || playerSelection == "Scissors" && computerSelection == "Rock") {
-                roundScore = 0;
+            } else if (
+                (playerSelection == "Rock" && computerSelection == "Paper") || 
+                (playerSelection == "Paper" && computerSelection == "Scissors") || 
+                (playerSelection == "Scissors" && computerSelection == "Rock")) {
                 return `You lose! ${computerSelection} beats ${playerSelection}`
+                computerScore++;
             } else {
-                roundScore = 1;
                 return `You win! ${playerSelection} beats ${computerSelection}`
+                userScore++;
             }
+        } else {
+
         }
     }
 }
@@ -47,4 +53,4 @@ function playGame() {
     }
 }
 
-console.log(playRound());
+console.log(playGame());
