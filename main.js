@@ -8,49 +8,48 @@ function getComputerChoice() {
     return items[i];
 }
 
-console.log(getComputerChoice());
-
-// R-R  P-P  S-S  -- tie
-// R-P  P-S  S-R  -- lost
-// R-S  P-R  S-P  -- won
-
 function playRound(playerSelection, computerSelection) {
     let playerInput = prompt("Do you choose Rock, Paper or Scissors?");
 
     playerSelection = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase();
     computerSelection = getComputerChoice();
+    round++;
 
     for (i = 0; i <= 3; i++) {
         if (playerSelection === items[i]) {
             if (playerSelection === computerSelection) {
-                return "You Tied! Try another round!"
+                alert("You Tied! Try another round!")
             } else if (
                 (playerSelection == "Rock" && computerSelection == "Paper") || 
                 (playerSelection == "Paper" && computerSelection == "Scissors") || 
                 (playerSelection == "Scissors" && computerSelection == "Rock")) {
-                return `You lose! ${computerSelection} beats ${playerSelection}`
                 computerScore++;
+                alert(`You lose! ${computerSelection} beats ${playerSelection}. Your score is ${userScore} - Computer's score is ${computerScore}`)
             } else {
-                return `You win! ${playerSelection} beats ${computerSelection}`
                 userScore++;
+                alert(`You win! ${playerSelection} beats ${computerSelection}. Your score is ${userScore} - Computer's score is ${computerScore}`)
             }
-        } else {
-
+        }
+    }
+}
+ 
+function playGame() {
+    
+    for (let n = 0; n <= 5; n++) {
+        console.log(getComputerChoice());
+        n = round;
+        if (n < 5) {
+            playRound();
+        } else if (n === 5) {
+            if (userScore === computerScore) {
+                alert("It's a tie! Try another round")
+            } else if (userScore < computerScore) {
+                alert("You lost! Better luck next time")
+            } else if (userScore > computerScore) {
+                alert(`You won!! You beat Computer by ${userScore} points!`)
+            }
         }
     }
 }
 
-// game has 5 rounds => n <= 5
-// each round wins a point
-// add the points out
-// winner is
-
-// win -- +1  lose -- 0  tie -- 0
- 
-function playGame() {
-    for (let n = 0; n <= 5; n++) {
-        playRound();
-    }
-}
-
-console.log(playGame());
+playGame();
