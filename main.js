@@ -9,27 +9,32 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    let playerInput = prompt("Do you choose Rock, Paper or Scissors?");
-
-    playerSelection = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase();
+    playerSelection = prompt("Do you choose Rock, Paper or Scissors?");
     computerSelection = getComputerChoice();
     round++;
 
-    for (i = 0; i <= 3; i++) {
-        if (playerSelection === items[i]) {
-            if (playerSelection === computerSelection) {
+    for (let item of items) {
+        if (items[0].toLowerCase() === playerSelection.toLowerCase()) {
+            if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
                 alert("You Tied! Try another round!")
             } else if (
-                (playerSelection == "Rock" && computerSelection == "Paper") || 
-                (playerSelection == "Paper" && computerSelection == "Scissors") || 
-                (playerSelection == "Scissors" && computerSelection == "Rock")) {
+                (playerSelection.toLowerCase() === "rock" && computerSelection === "Paper") ||
+                (playerSelection.toLowerCase() === "paper" && computerSelection === "Scissors") ||
+                (playerSelection.toLowerCase() === "scissors" && computerSelection === "Rock")) {
                 computerScore++;
-                alert(`You lose! ${computerSelection} beats ${playerSelection}. Your score is ${userScore} - Computer's score is ${computerScore}`)
+                alert(`You lose! ${computerSelection} beats ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()}. Your score is ${userScore} - Computer's score is ${computerScore}`)
             } else {
                 userScore++;
-                alert(`You win! ${playerSelection} beats ${computerSelection}. Your score is ${userScore} - Computer's score is ${computerScore}`)
+                alert(`You win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} beats ${computerSelection}. Your score is ${userScore} - Computer's score is ${computerScore}`)
             }
+            break; 
         }
+    }
+
+    if (items[0].toLowerCase() !== playerSelection.toLowerCase()) {
+        round--;
+        alert("Please choose between Rock, Paper or Scissors")
+        playRound();
     }
 }
  
@@ -38,9 +43,7 @@ function playGame() {
     for (let n = 0; n <= 5; n++) {
         console.log(getComputerChoice());
         n = round;
-        if (n < 5) {
-            playRound();
-        } else if (n === 5) {
+        if (n === 5) {
             if (userScore === computerScore) {
                 alert("It's a tie! Try another round")
             } else if (userScore < computerScore) {
@@ -48,6 +51,8 @@ function playGame() {
             } else if (userScore > computerScore) {
                 alert(`You won!! You beat Computer by ${userScore} points!`)
             }
+        } else {
+            playRound();
         }
     }
 }
