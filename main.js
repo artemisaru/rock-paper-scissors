@@ -11,10 +11,12 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = prompt("Do you choose Rock, Paper or Scissors?");
     computerSelection = getComputerChoice();
-    round++;
+    
 
-    for (let item of items) {
-        if (items[0].toLowerCase() === playerSelection.toLowerCase()) {
+    for (const item of items) {
+        getComputerChoice();
+        if (item.toLowerCase() === playerSelection.toLowerCase()) {
+            round++;
             if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
                 alert("You Tied! Try another round!")
             } else if (
@@ -28,14 +30,13 @@ function playRound(playerSelection, computerSelection) {
                 alert(`You win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} beats ${computerSelection}. Your score is ${userScore} - Computer's score is ${computerScore}`)
             }
             break; 
+        } else if (item.toLowerCase()  !== playerSelection.toLowerCase()) {
+            alert("Please choose between Rock, Paper or Scissors")
+            break;
         }
     }
-
-    if (items[0].toLowerCase() !== playerSelection.toLowerCase()) {
-        round--;
-        alert("Please choose between Rock, Paper or Scissors")
-        playRound();
-    }
+   
+    
 }
  
 function playGame() {
