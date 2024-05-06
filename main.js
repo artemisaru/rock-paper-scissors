@@ -15,15 +15,7 @@ let round = 0;
 //}
 
 // Play one round
-function playRound(humanChoice, computerChoice) { 
-    let humanSelection = "";
-    humanChoice = humanSelection.toLowerCase();
-
-    console.log(humanChoice);
-    
-    let i = Math.floor(Math.random() * choices.length);
-    computerSelection = choices[i];
-    computerChoice = computerSelection.toLowerCase();
+function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
         console.log("You tied! Try another round!")
@@ -64,8 +56,13 @@ function playGame() {
 
 playGame(); */
 
-const buttons = document.querySelectorAll(".btn-choice");
+const rpsButtons = document.querySelector("#rpsButtons");
 
-buttons.forEach((button) => {
-    button.addEventListener("click", playRound());
+rpsButtons.addEventListener("click", function (e) {
+    const playerSelection = e.target.textContent.toLowerCase();
+    
+    let i = Math.floor(Math.random() * choices.length);
+    let computerSelection = choices[i].toLowerCase();
+    
+    playRound(playerSelection, computerSelection);
 });
