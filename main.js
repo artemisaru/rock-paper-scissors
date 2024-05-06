@@ -15,31 +15,24 @@ let round = 0;
 //}
 
 // Play one round
-function playRound(humanChoice, computerChoice) {
-    let humanSelection = prompt("Do you choose Rock, Paper or Scissors?");
+function playRound(humanChoice, computerChoice) { 
+    let humanSelection = "";
     humanChoice = humanSelection.toLowerCase();
 
+    console.log(humanChoice);
+    
     let i = Math.floor(Math.random() * choices.length);
     computerSelection = choices[i];
     computerChoice = computerSelection.toLowerCase();
 
-    for (const choice of choices) {
-        if (humanChoice === choice) {
-            round++;
-            if (humanChoice === computerChoice) {
-                console.log("You tied! Try another round!")
-            } else if ((humanChoice === "rock" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "rock")) {
-                computerScore++;
-                console.log(`You lost this round! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1).toLowerCase()} beats ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()}. Your score is ${humanScore} - Computer's score is ${computerScore}`)
-            } else {
-                humanScore++;
-                console.log(`You won this round! ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()} beats ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1).toLowerCase()}. Your score is ${humanScore} - Computer's score is ${computerScore}`)
-            }
-            break;
-        } else {
-            console.log("Please choose between Rock, Paper or Scissors!")
-            break;
-        }
+    if (humanChoice === computerChoice) {
+        console.log("You tied! Try another round!")
+    } else if ((humanChoice === "rock" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "rock")) {
+        computerScore++;
+        console.log(`You lost this round! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1).toLowerCase()} beats ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()}. Your score is ${humanScore} - Computer's score is ${computerScore}`)
+    } else {
+        humanScore++;
+        console.log(`You won this round! ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()} beats ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1).toLowerCase()}. Your score is ${humanScore} - Computer's score is ${computerScore}`)
     }
     
 }
@@ -48,6 +41,7 @@ function playRound(humanChoice, computerChoice) {
 //const computerSelection = getComputerChoice().toLowerCase();
 
 // Play game = 5 rounds
+/*
 function playGame() {
     let gameResult = "";
     for (let n = 0; n <= 5; n++) {
@@ -68,4 +62,10 @@ function playGame() {
     }
 }
 
-playGame();
+playGame(); */
+
+const buttons = document.querySelectorAll(".btn-choice");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", playRound());
+});
