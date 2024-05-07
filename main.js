@@ -65,4 +65,32 @@ rpsButtons.addEventListener("click", function (e) {
     let computerSelection = choices[i].toLowerCase();
     
     playRound(playerSelection, computerSelection);
+
+    const playerImg = document.querySelector("#humanSelection");
+
+    switch(playerSelection) {
+        case "rock" :
+            playerImg.src = "./images/rock.png";
+            break;
+        case "paper" :
+            playerImg.src = "./images/paper.png";
+            break;
+        case "scissors" :
+            playerImg.src = "./images/scissors.png";
+            break;
+    }
+
+    const computerImg = document.querySelector("#computerSelection");
+
+    switch(computerSelection) {
+        case "rock" :
+            computerImg.src = "./images/rock.png";
+            break;
+        case "paper" :
+            computerImg.src = "./images/paper.png";
+            break;
+        case "scissors" :
+            computerImg.src = "./images/scissors.png";
+            break;
+    }
 });
