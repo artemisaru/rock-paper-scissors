@@ -7,74 +7,38 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Rock Paper Scissors</h1>
+    <header>
+        <h1>Rock, Paper, Scissors</h1>
         <h2>Round 1</h2>
-    </div>
-    <div class="result-container">
-        <div class="game-container">
-            <div class="game-container_col human-result">
-                <div class="score-container">
-                    <h3>Your Score</h3>
-                    <div id="humanScore" class="score-stack">
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    </div>
-                </div>
-                <div class="choice-container">
-                    <div class="choice">
-                        <img id="humanSelection" src="./images/pikpytje.png" alt="Player's choice">
-                    </div>
-                    <div id="rpsButtons" class="choice-stack">
-                        <button id="1" class="btn-choice">Rock</button>
-                        <button id="2" class="btn-choice">Paper</button>
-                        <button id="3" class="btn-choice">Scissors</button>
-                    </div>
-                </div>
+    </header>
+
+    <div class="play-area">
+        <div class="selection human-selection">
+            <h3>You</h3>
+            <div class="selection-img">
+                <img id="humanSelection" src="./images/pikpytje.png" alt="">
             </div>
-            <div class="game-container_col computer-result">
-                <div class="score-container">
-                    <h3>Computer's Score</h3>
-                    <div id="computerScore" class="score-stack">
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    <svg height="40" width="40" xmlns="http://www.w3.org/2000/svg">
-                        <circle r="15" cx="50%" cy="50%" />
-                    </svg>
-                    </div>
-                </div>
-                <div class="choice-container">
-                    <div class="choice">
-                        <img id="computerSelection" src="./images/pikpytje.png" alt="Computer's hidden random choice">
-                    </div>
-                </div>
+        </div>
+        <div class="score">
+            <h2>Score</h2>
+            <div>
+                <span class="human-score">0</span> - 
+                <span class="computer-score">0</span>
+            </div>
+        </div>
+        <div class="selection computer-selection">
+            <h3>Computer</h3>
+            <div class="selection-img">
+                <img id="computerSelection" src="./images/pikpytje.png" alt="">
             </div>
         </div>
     </div>
-    
+
+    <div id="rpsButtons" class="choices">
+        <button class="choice">Rock</button>
+        <button class="choice">Paper</button>
+        <button class="choice">Scissors</button>
+    </div>
 
     <script src="./main.js"></script>
 </body>

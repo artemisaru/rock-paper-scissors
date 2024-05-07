@@ -16,7 +16,7 @@ body {
     color: #1a1a1a;
 }
 
-.header {
+header {
     min-width: 540px;
     display: flex;
     flex-direction: column;
@@ -26,75 +26,60 @@ body {
     margin-bottom: 60px;
 }
 
-.result-container {
+.play-area {
     min-width: 540px;
-}
-
-.game-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 60px;
+    gap: 30px;
     padding: 0 80px;
 }
 
-.game-container_col {
+.play-area > div {
     flex: 1;
-    min-width: 540px;
+    
+    display: flex;
+    gap: 30px;
+    padding: 60px;  
+}
+
+.selection {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    padding: 60px;
 
     background-color: #ffffff;
     box-shadow: 0px 0px 30px 20px rgb(221, 221, 221);
     border-radius: 30px;
 }
 
-.score-container {
+.score {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.score-stack {
-    display: flex;
-    gap: 5px;
-}
-
-svg circle {
-    fill: #cecece;
-}
-
-.choice-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.choice {
+.selection-img {
     width: 250px;
     height: 300px;
     background-color: #474747;
     overflow: hidden;
 }
 
-.choice img {
+.selection-img img {
     width: 100%;
     transition: all cubic-bezier(0.05, 0.2, 0.1, 1) .8s;
 }
 
-.choice-stack {
-    width: 100%;
+.choices {
     display: flex;
     gap: 10px;
+    padding: 80px;
 }
 
-.btn-choice {
+.choice {
     width: 100%;
     min-width: 145px;
     display: flex;
@@ -113,7 +98,7 @@ svg circle {
     transition: all cubic-bezier(0.05, 0.2, 0.1, 1) .8s;
 }
 
-.btn-choice:hover {
+.choice:hover {
     background-color: #383994;
     color: #ffffff;
     box-shadow: 0px 0px 30px rgb(255, 255, 255);
