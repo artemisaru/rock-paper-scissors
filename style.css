@@ -7,13 +7,23 @@
 body {
     font-family: 'Inter';
     font-size: 20px;
-
     display: flex;
     flex-direction: column;
     padding: 30px;
-
     background-color: #eeeeee;
     color: #1a1a1a;
+}
+
+i {
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background-color: #484abe;
+    color: #e9e9f3;
+    border-radius: 95px;
+    border: none;
+    transition: all cubic-bezier(0.05, 0.2, 0.1, 1) .8s;
 }
 
 header {
@@ -37,7 +47,6 @@ header {
 
 .play-area > div {
     flex: 1;
-    
     display: flex;
     gap: 30px;
     padding: 60px;  
@@ -48,7 +57,6 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 30px;
-
     background-color: #ffffff;
     box-shadow: 0px 0px 30px 20px rgb(221, 221, 221);
     border-radius: 30px;
@@ -75,32 +83,62 @@ header {
 
 .choices {
     display: flex;
-    gap: 10px;
-    padding: 80px;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 80px;
 }
 
 .choice {
-    width: 100%;
-    min-width: 145px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #484abe;
-    color: #e9e9f3;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    padding: 20px 50px;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    transition: all cubic-bezier(0.05, 0.2, 0.1, 1) .8s;
+    padding: 50px;
+    font-size: 90px;
+    width: 90px;
 }
 
 .choice:hover {
     background-color: #383994;
     color: #ffffff;
     box-shadow: 0px 0px 30px rgb(255, 255, 255);
+    transform: scale(.96);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-radius: 48px;
+    background-color: #eeeeee;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    margin: 20% auto;
+    padding: 20px 20px 20px 40px;
+    width: 20%;
+}
+
+.close-modal {
+    background-color: #e9e9f3;
+    color: #1a1a1a;
+    border-radius: 95px;
+    padding: 15px;
+    font-size: 25px;
+    width: 25px;
+}
+
+.close-modal:hover {
+    background-color: #d6d6e0;
+    color: #484abe;
     transform: scale(.96);
 }

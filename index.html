@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/989b361632.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <h1>Rock, Paper, Scissors</h1>
-        <h2>Round 1</h2>
+        <h2>Round <span class="round">1</span></h2>
     </header>
 
     <div class="play-area">
@@ -21,7 +22,7 @@
         </div>
         <div class="score">
             <h2>Score</h2>
-            <div>
+            <div class="start-scores">
                 <span class="human-score">0</span> - 
                 <span class="computer-score">0</span>
             </div>
@@ -35,9 +36,17 @@
     </div>
 
     <div id="rpsButtons" class="choices">
-        <button class="choice">Rock</button>
-        <button class="choice">Paper</button>
-        <button class="choice">Scissors</button>
+        <i id="rock" class="choice fa-solid fa-hand-back-fist"></i>
+        <i id="paper" class="choice fa-solid fa-hand"></i>
+        <i id="scissors" class="choice fa-solid fa-hand-scissors"></i>
+    </div>
+
+    <!-- Round Result Modal -->
+    <div id="roundModal" class="modal">
+        <div class="modal-content">
+            <i class="close-modal fa-solid fa-xmark"></i>
+            <h2 id="roundResult">Waiting on round results</h2>
+        </div>
     </div>
 
     <script src="./main.js"></script>

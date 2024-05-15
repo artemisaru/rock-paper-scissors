@@ -1,32 +1,106 @@
+// General Variables
 const choices = ["rock", "paper", "scissors"];
+const rpsButtons = document.querySelectorAll(".choice");
+
+let putRound = document.querySelector(".round");
+let putHumanScore = document.querySelector(".human-score");
+let putComputerScore = document.querySelector(".computer-score");
+
+const humanSelectionImg = document.querySelector("#humanSelection");
+const computerSelectionImg = document.querySelector("#computerSelection");
+
+const roundResult = document.querySelector("#roundResult");
+const roundModal = document.querySelector(".modal");
+let closeRoundModal = document.querySelector(".close-modal");
+
+let round = 1;
 let humanScore = 0;
 let computerScore = 0;
-let round = 0;
+
+// Text Variables
+let tieRound = "It's a tie";
+let humanWinRound = "You won this round!";
+let computerWinRound = "You lost this round!";
+
+let tieGame = "It's a tie! Try another game!";
+let humanWinGame = "Well done!! You won against the computer!";
+let computerWinGame = "You lost...The computer has defeated you.";
+
+// Play Game
+function playGame(event) {
+    round++;
+    putRound.textContent = round;
+    const humanSelection = event.target.id;
+    console.log(humanSelection);
+    const computerSelection = getComputerChoice();
+    humanSelectionImg.src = `./images/${humanSelection}.png`;
+    computerSelectionImg.src = `./images/${computerSelection}.png`;
+    const winner = getRoundWinner(humanSelection, computerSelection);
+    showRoundWinner(winner);
+    showRoundModal();
+}
+
 // Randomly generate computer's choice
-//function getComputerChoice() {
-//    let i = Math.floor(Math.random() * choices.length);
-//    return choices[i];
-//};
+function getComputerChoice() {
+    let randomChoice = Math.floor(Math.random() * choices.length);
+    return choices[randomChoice];
+};
 
-// Get human's choice
-//function getHumanChoice() {
-//    let input = prompt("Do you choose Rock, Paper or Scissors?");
-//    return input;
-//}
-
-// Play one round
-function playRound(humanChoice, computerChoice) {
+// Get Round Winner
+function getRoundWinner(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
-        console.log("You tied! Try another round!")
-    } else if ((humanChoice === "rock" && computerChoice === "paper") || (humanChoice === "paper" && computerChoice === "scissors") || (humanChoice === "scissors" && computerChoice === "rock")) {
-        computerScore++;
-        console.log(`You lost this round! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1).toLowerCase()} beats ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()}. Your score is ${humanScore} - Computer's score is ${computerScore}`)
-    } else {
-        humanScore++;
-        console.log(`You won this round! ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()} beats ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1).toLowerCase()}. Your score is ${humanScore} - Computer's score is ${computerScore}`)
+        return "draw";
+    } else if (humanChoice === "rock") {
+        if (computerChoice === "paper") {
+            return "computer";
+        } else {
+            return "human";
+        }
+    } else if (humanChoice === "paper") {
+        if (computerChoice === "rock") {
+            return "human";
+        } else {
+            return "computer";
+        }
+    } else if (humanChoice === "scissors") {
+        if (computerChoice === "rock") {
+            return "computer";
+        } else {
+            return "human";
+        }
     }
-    
+}
+
+// Show Round Winner
+function showRoundWinner(winner) {
+    if (winner === "human") {
+        humanScore++;
+        roundResult.textContent = humanWinRound;
+        putHumanScore.textContent = humanScore;
+    } else if (winner === "computer") {
+        computerScore++;
+        roundResult.textContent = computerWinRound;
+        putComputerScore.textContent = computerScore;
+    } else {
+        roundResult.textContent = tieRound;
+    }
+}
+
+// Show Round Modal
+function showRoundModal() {
+    roundModal.style.display = "block";
+}
+
+// Clear Modal
+function clearModalBtn() {
+    roundModal.style.display = "none";
+}
+
+function clearModalWindow(e) {
+    if (e.target === roundModal) {
+        roundModal.style.display = "none";
+    }
 }
 
 //const humanSelection = getHumanChoice().toLowerCase();
@@ -56,41 +130,10 @@ function playGame() {
 
 playGame(); */
 
-const rpsButtons = document.querySelector("#rpsButtons");
-
-rpsButtons.addEventListener("click", function (e) {
-    const playerSelection = e.target.textContent.toLowerCase();
-    
-    let i = Math.floor(Math.random() * choices.length);
-    let computerSelection = choices[i].toLowerCase();
-    
-    playRound(playerSelection, computerSelection);
-
-    const playerImg = document.querySelector("#humanSelection");
-
-    switch(playerSelection) {
-        case "rock" :
-            playerImg.src = "./images/rock.png";
-            break;
-        case "paper" :
-            playerImg.src = "./images/paper.png";
-            break;
-        case "scissors" :
-            playerImg.src = "./images/scissors.png";
-            break;
-    }
-
-    const computerImg = document.querySelector("#computerSelection");
-
-    switch(computerSelection) {
-        case "rock" :
-            computerImg.src = "./images/rock.png";
-            break;
-        case "paper" :
-            computerImg.src = "./images/paper.png";
-            break;
-        case "scissors" :
-            computerImg.src = "./images/scissors.png";
-            break;
-    }
+// Event Listeners
+rpsButtons.forEach(rpsButton => {
+    rpsButton.addEventListener("click", (event) => {playGame(event)})
 });
+
+closeRoundModal.addEventListener("click", () => {clearModalBtn()});
+window.addEventListener("click", (e) => {clearModalWindow(e)});
