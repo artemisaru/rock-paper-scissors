@@ -2,7 +2,6 @@
 const choices = ["rock", "paper", "scissors"];
 const rpsButtons = document.querySelectorAll(".choice");
 
-let putRound = document.querySelector(".round");
 let putHumanScore = document.querySelector(".human-score");
 let putComputerScore = document.querySelector(".computer-score");
 
@@ -10,10 +9,13 @@ const humanSelectionImg = document.querySelector("#humanSelection");
 const computerSelectionImg = document.querySelector("#computerSelection");
 
 const roundResult = document.querySelector("#roundResult");
-const roundModal = document.querySelector(".modal");
-let closeRoundModal = document.querySelector(".close-modal");
+const roundModal = document.querySelector("#roundModal");
+const closeRoundModal = document.querySelector(".close-modal");
 
-let round = 1;
+const winnerResult = document.querySelector("#gameResult");
+const winnerModal = document.querySelector("#gameModal");
+const resetBtn = document.querySelector("#resetGame");
+
 let humanScore = 0;
 let computerScore = 0;
 
@@ -26,18 +28,20 @@ let tieGame = "It's a tie! Try another game!";
 let humanWinGame = "Well done!! You won against the computer!";
 let computerWinGame = "You lost...The computer has defeated you.";
 
-// Play Game
+// Play Game with max. 5 points
 function playGame(event) {
-    round++;
-    putRound.textContent = round;
     const humanSelection = event.target.id;
-    console.log(humanSelection);
     const computerSelection = getComputerChoice();
     humanSelectionImg.src = `./images/${humanSelection}.png`;
     computerSelectionImg.src = `./images/${computerSelection}.png`;
     const winner = getRoundWinner(humanSelection, computerSelection);
     showRoundWinner(winner);
-    showRoundModal();
+
+    if (humanScore < 5 && computerScore < 5) {
+        showRoundModal(); 
+    } else if (humanScore === 5 || computerScore === 5) {
+        showWinnerModal();
+    }
 }
 
 // Randomly generate computer's choice
@@ -103,32 +107,29 @@ function clearModalWindow(e) {
     }
 }
 
-//const humanSelection = getHumanChoice().toLowerCase();
-//const computerSelection = getComputerChoice().toLowerCase();
-
-// Play game = 5 rounds
-/*
-function playGame() {
-    let gameResult = "";
-    for (let n = 0; n <= 5; n++) {
-        n = round;
-        if (humanScore === computerScore) {
-            gameResult = "It's a tie! Try another game.";
-        } else if (humanScore < computerScore) {
-            gameResult = `You lost! Better luck next time! Your score ${humanScore} - Computer's score ${computerScore}`;
-        } else {
-            gameResult = `You won!! Your score ${humanScore} - Computer's score ${computerScore}`;
-        }
-
-        if (n === 5) {
-            console.log(gameResult);
-        } else {
-            playRound();
-        }
+// Show Winner Modal
+function showWinnerModal() {
+    if (humanScore === 5) {
+        winnerModal.style.display = "block";
+        winnerResult.textContent = humanWinGame;
+    } else if (computerScore === 5) {
+        winnerModal.style.display = "block";
+        winnerResult.textContent = computerWinGame;
     }
 }
 
-playGame(); */
+// Reset Game
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    putHumanScore.textContent = humanScore;
+    putComputerScore.textContent = computerScore;
+}
+
+// Clear Winner Modal
+function clearWinnerModal() {
+    winnerModal.style.display = "none";
+}
 
 // Event Listeners
 rpsButtons.forEach(rpsButton => {
@@ -137,3 +138,8 @@ rpsButtons.forEach(rpsButton => {
 
 closeRoundModal.addEventListener("click", () => {clearModalBtn()});
 window.addEventListener("click", (e) => {clearModalWindow(e)});
+
+resetBtn.addEventListener("click", () => {
+    clearWinnerModal();
+    resetGame();
+})
