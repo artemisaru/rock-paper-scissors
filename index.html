@@ -19,15 +19,17 @@
         <!-- Human Card -->
         <div class="col selection">
             <h3>Your choice</h3>
-            <div class="flipper">
-                <div class="front">
-                    <div class="start-img">
-                        <img src="./images/pikpytje.png" alt="">
+            <div class="flip">
+                <div class="flip-content">
+                    <div class="front">
+                        <div class="start-img">
+                            <img src="./images/pikpytje.png" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="back">
-                    <div class="selection-img">
-                        <img id="humanSelection" src="./images/pikpytje.png" alt="">
+                    <div class="back">
+                        <div class="selection-img">
+                            <img id="humanSelection" src="./images/pikpytje.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,15 +45,17 @@
         <!-- Computer Card -->
         <div class="col selection">
             <h3>Computer's choice</h3>
-            <div class="flipper">
-                <div class="front">
-                    <div class="start-img">
-                        <img src="./images/pikpytje.png" alt="">
+            <div class="flip">
+                <div class="flip-content">
+                    <div class="front">
+                        <div class="start-img">
+                            <img src="./images/pikpytje.png" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="back">
-                    <div class="selection-img">
-                        <img id="computerSelection" src="./images/pikpytje.png" alt="">
+                    <div class="back">
+                        <div class="selection-img">
+                            <img id="computerSelection" src="./images/pikpytje.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,16 +70,16 @@
     </div>
 
     <!-- Round Result Modal -->
-    <div id="roundModal" class="modal">
-        <div class="modal-content">
-            <i class="close-modal fa-solid fa-xmark"></i>
-            <h2 id="roundResult">Waiting on round results</h2>
+    <div id="roundModal" class="result-container">
+        <div class="result">
+            <i id="clearRoundResult" class="fa-solid fa-arrows-rotate"></i>
+            <h2 id="roundResult">Waiting on game results</h2>
         </div>
     </div>
 
     <!-- Game Result Modal -->
-    <div id="gameModal" class="modal">
-        <div class="modal-content">
+    <div id="gameModal" class="result-container">
+        <div class="result">
             <button id="resetGame">
                 Play another game
                 <i class="fa-solid fa-arrows-rotate"></i>

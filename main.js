@@ -5,12 +5,14 @@ const rpsButtons = document.querySelectorAll(".choice");
 let putHumanScore = document.querySelector(".human-score");
 let putComputerScore = document.querySelector(".computer-score");
 
+const flips = document.querySelectorAll(".flip-content");
+
 const humanSelectionImg = document.querySelector("#humanSelection");
 const computerSelectionImg = document.querySelector("#computerSelection");
 
 const roundResult = document.querySelector("#roundResult");
 const roundModal = document.querySelector("#roundModal");
-const closeRoundModal = document.querySelector(".close-modal");
+const closeRoundModal = document.querySelector("#clearRoundResult");
 
 const winnerResult = document.querySelector("#gameResult");
 const winnerModal = document.querySelector("#gameModal");
@@ -36,9 +38,10 @@ function playGame(event) {
     computerSelectionImg.src = `./images/${computerSelection}.png`;
     const winner = getRoundWinner(humanSelection, computerSelection);
     showRoundWinner(winner);
+    flipChoice();
 
     if (humanScore < 5 && computerScore < 5) {
-        showRoundModal(); 
+        showRoundModal();
     } else if (humanScore === 5 || computerScore === 5) {
         showWinnerModal();
     }
@@ -49,6 +52,20 @@ function getComputerChoice() {
     let randomChoice = Math.floor(Math.random() * choices.length);
     return choices[randomChoice];
 };
+
+// Flip Selections
+function flipChoice() {
+    flips.forEach(flip => {
+        flip.classList.add("flipped");
+    });
+}
+
+// Unflip Selections
+function unflipChoice() {
+    flips.forEach(flip => {
+        flip.classList.remove("flipped");
+    });
+}
 
 // Get Round Winner
 function getRoundWinner(humanChoice, computerChoice) {
@@ -93,27 +110,22 @@ function showRoundWinner(winner) {
 
 // Show Round Modal
 function showRoundModal() {
-    roundModal.style.display = "block";
+    roundModal.classList.add("show-result");
 }
 
-// Clear Modal
-function clearModalBtn() {
-    roundModal.style.display = "none";
-}
-
-function clearModalWindow(e) {
-    if (e.target === roundModal) {
-        roundModal.style.display = "none";
-    }
+// Clear Round Modal
+function clearRoundModal() {
+    roundModal.classList.remove("show-result");
+    unflipChoice();
 }
 
 // Show Winner Modal
 function showWinnerModal() {
     if (humanScore === 5) {
-        winnerModal.style.display = "block";
+        winnerModal.classList.add("show-result");
         winnerResult.textContent = humanWinGame;
     } else if (computerScore === 5) {
-        winnerModal.style.display = "block";
+        winnerModal.classList.add("show-result");
         winnerResult.textContent = computerWinGame;
     }
 }
@@ -124,11 +136,13 @@ function resetGame() {
     computerScore = 0;
     putHumanScore.textContent = humanScore;
     putComputerScore.textContent = computerScore;
+    unflipChoice();
 }
 
 // Clear Winner Modal
 function clearWinnerModal() {
-    winnerModal.style.display = "none";
+    winnerModal.classList.remove("show-result");
+    unflipChoice();
 }
 
 // Event Listeners
@@ -136,8 +150,9 @@ rpsButtons.forEach(rpsButton => {
     rpsButton.addEventListener("click", (event) => {playGame(event)})
 });
 
-closeRoundModal.addEventListener("click", () => {clearModalBtn()});
-window.addEventListener("click", (e) => {clearModalWindow(e)});
+closeRoundModal.addEventListener("click", () => {
+    clearRoundModal();
+});
 
 resetBtn.addEventListener("click", () => {
     clearWinnerModal();
