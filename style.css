@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+/* General */
+
 * {
     margin: 0px;
 }
@@ -14,6 +16,8 @@ body {
     color: #1a1a1a;
 }
 
+/* Game Header */
+
 header {
     min-width: 540px;
     display: flex;
@@ -24,6 +28,8 @@ header {
     margin-bottom: 60px;
 }
 
+/* Play Area Columns */
+
 .play-area {
     min-width: 540px;
     display: flex;
@@ -33,41 +39,58 @@ header {
     padding: 0 80px;
 }
 
-.play-area > div {
+.col {
     flex: 1;
     display: flex;
-    gap: 30px;
-    padding: 60px;  
-}
-
-.selection {
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 30px 20px rgb(221, 221, 221);
-    border-radius: 30px;
 }
 
-.score {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.selection-img {
-    width: 250px;
+.selection-img, .start-img {
+    width: 300px;
     height: 300px;
-    background-color: #474747;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
+    border-radius: 100%;
 }
 
-.selection-img img {
+.selection-img img, .start-img img {
     width: 100%;
-    transition: all cubic-bezier(0.05, 0.2, 0.1, 1) .8s;
 }
+
+/* Choice Flipper */
+
+.flipper {
+    position: relative;
+    height: 400px;
+    transition: all cubic-bezier(0.05, 0.2, 0.1, 1) .8s;
+    transform-style: preserve-3d;
+}
+
+.flipper .front {
+    z-index: 2;
+    transform: translate(-50%, 0%) rotateY(0deg);
+}
+
+.flipper .back {
+    transform: translate(-50%, 0%) rotateY(180deg);
+}
+
+.flipper .front, .flipper .back {
+    position: absolute;
+    backface-visibility: hidden;
+    top: 0;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Rock, Paper, Scissors Buttons */
 
 .choices {
     display: flex;
@@ -99,12 +122,14 @@ header {
     transform: scale(.96);
 }
 
+/* Result Modals */
+
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
