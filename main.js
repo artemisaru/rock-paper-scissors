@@ -13,10 +13,12 @@ const computerSelectionImg = document.querySelector("#computerSelection");
 const roundResult = document.querySelector("#roundResult");
 const roundModal = document.querySelector("#roundModal");
 const closeRoundModal = document.querySelector("#clearRoundResult");
+const roundColor = document.querySelector("#roundColor");
 
 const winnerResult = document.querySelector("#gameResult");
 const winnerModal = document.querySelector("#gameModal");
 const resetBtn = document.querySelector("#resetGame");
+const winnerColor = document.querySelector("#gameColor")
 
 let humanScore = 0;
 let computerScore = 0;
@@ -98,13 +100,16 @@ function showRoundWinner(winner) {
     if (winner === "human") {
         humanScore++;
         roundResult.textContent = humanWinRound;
+        roundColor.style.background = "#21ca59";
         putHumanScore.textContent = humanScore;
     } else if (winner === "computer") {
         computerScore++;
         roundResult.textContent = computerWinRound;
+        roundColor.style.background = "#bb2233";
         putComputerScore.textContent = computerScore;
     } else {
         roundResult.textContent = tieRound;
+        roundColor.style.background = "#fa8603";
     }
 }
 
@@ -127,6 +132,7 @@ function showWinnerModal() {
     } else if (computerScore === 5) {
         winnerModal.classList.add("show-result");
         winnerResult.textContent = computerWinGame;
+        winnerColor.style.background = "#bb2233"
     }
 }
 
