@@ -1,6 +1,6 @@
 // General Variables
 const choices = ["rock", "paper", "scissors"];
-const rpsButtons = document.querySelectorAll(".choice");
+const rpsButtons = document.querySelectorAll("button.choice");
 
 let putHumanScore = document.querySelector(".human-score");
 let putComputerScore = document.querySelector(".computer-score");
@@ -28,13 +28,13 @@ let tieRound = "It's a tie";
 let humanWinRound = "You won this round!";
 let computerWinRound = "You lost this round!";
 
-let tieGame = "It's a tie! Try another game!";
-let humanWinGame = "Well done!! You won against the computer!";
-let computerWinGame = "You lost...The computer has defeated you.";
+let humanWinGame = "Well done! You won against the computer!";
+let computerWinGame = "You lost! Better luck next time!";
 
 // Play Game with max. 5 points
 function playGame(event) {
     const humanSelection = event.target.id;
+    console.log(humanSelection);
     const computerSelection = getComputerChoice();
     humanSelectionImg.src = `./images/${humanSelection}.png`;
     computerSelectionImg.src = `./images/${computerSelection}.png`;
@@ -100,27 +100,33 @@ function showRoundWinner(winner) {
     if (winner === "human") {
         humanScore++;
         roundResult.textContent = humanWinRound;
-        roundColor.style.background = "#21ca59";
+        roundColor.style.background = "#21bd69";
         putHumanScore.textContent = humanScore;
     } else if (winner === "computer") {
         computerScore++;
         roundResult.textContent = computerWinRound;
-        roundColor.style.background = "#bb2233";
+        roundColor.style.background = "#f53d5a";
         putComputerScore.textContent = computerScore;
     } else {
         roundResult.textContent = tieRound;
-        roundColor.style.background = "#fa8603";
+        roundColor.style.background = "#00bcd4";
     }
 }
 
 // Show Round Modal
 function showRoundModal() {
     roundModal.classList.add("show-result");
+    rpsButtons.forEach(rpsButton => {
+        rpsButton.setAttribute("disabled", true);
+    })
 }
 
 // Clear Round Modal
 function clearRoundModal() {
     roundModal.classList.remove("show-result");
+    rpsButtons.forEach(rpsButton => {
+        rpsButton.removeAttribute("disabled");
+    })
     unflipChoice();
 }
 
@@ -132,8 +138,12 @@ function showWinnerModal() {
     } else if (computerScore === 5) {
         winnerModal.classList.add("show-result");
         winnerResult.textContent = computerWinGame;
-        winnerColor.style.background = "#bb2233"
+        winnerColor.style.background = "#f53d5a"
     }
+
+    rpsButtons.forEach(rpsButton => {
+        rpsButton.setAttribute("disabled", true);
+    })
 }
 
 // Reset Game
@@ -143,6 +153,9 @@ function resetGame() {
     putHumanScore.textContent = humanScore;
     putComputerScore.textContent = computerScore;
     unflipChoice();
+    rpsButtons.forEach(rpsButton => {
+        rpsButton.removeAttribute("disabled");
+    })
 }
 
 // Clear Winner Modal
